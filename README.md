@@ -165,3 +165,29 @@
 - Robust validation for null or invalid inputs.
 
 ---
+
+# Quantity Measurement App – UC7 (Addition with Target Unit Specification)
+
+### 📌 Overview
+
+- This module extends UC6 by allowing the caller to explicitly specify a target unit for addition results.
+- Instead of defaulting to the first operand’s unit, the result can be returned in any supported unit.
+-  Example: 1 foot + 12 inches with target unit YARDS ≈ 0.667 yards.
+
+### ⚙️ Use Case: UC7 – Addition with Target Unit Specification
+
+- Accepts two numerical values with their respective units and a target unit.
+- Adds them and returns the sum in the explicitly specified target unit.
+
+### ⚙️ Key Implementation Points (UC7 – Explicit Target Unit Addition)
+
+- Uses the same immutable Length class and LengthUnit enum.
+- Overloaded add() method:
+   - UC6: add(A, B) → result in the first operand’s unit.
+   - UC7: add(A, B, targetUnit) → result in explicitly specified unit.
+- Private utility method handles conversion → addition → target unit conversion.
+- Validation added: target unit must be non-null and valid.
+- Preserves immutability, precision, and commutativity.
+- Maintains backward compatibility with the UC6 addition.
+
+---
