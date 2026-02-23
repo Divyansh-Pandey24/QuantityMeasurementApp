@@ -108,5 +108,36 @@
 - Measurement value and unit stay encapsulated
 - `equals()` supports cross-unit comparisons seamlessly
 - Uses safe `floating-point comparison`
+
+---
+
+# Quantity Measurement App – UC5 (Unit-to-Unit Conversion)
+
+### 📌 Overview
+- This module extends UC4 by adding `explicit unit-to-unit conversion support` to the Quantity Measurement App.
+- Instead of only `checking equality`, the `Length API` now allows `converting a measurement` from one unit to another using centralised conversion factors.
+- Supports conversion across `feet ↔ inches ↔ yards ↔ centimeters`.
+
+### ⚙️ Use Case: UC5 – Unit-to-Unit Conversion (Same Measurement Type)
+
+- Accepts a numerical value along with a `source unit` and a `target unit`
+- Supports conversion between all supported length units
+- Normalises values using a `common base unit`
+- Converts the normalised value into the target unit
+- Returns the converted numeric value
+
+### ⚙️ Key Implementation Points
+
+- Continues using the same immutable `Length` class
+- Reuses the existing `LengthUnit` enum with predefined conversion factors
+- Conversion logic is centralised and consistent
+- Supports both:
+    - Static conversion using raw values
+    - Instance-level conversion using `convertTo()`
+- Validation ensures:
+    - Units are `non-null` and valid
+    - Values are finite (not NaN or infinite)
+- Conversion preserves mathematical accuracy within `floating-point` tolerance
+- No mutation of existing objects; conversions return new values or instances
   
 ---
