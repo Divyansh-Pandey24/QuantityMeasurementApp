@@ -17,27 +17,24 @@ public class QuantityMeasurementApp {
         return result;
     }
 
-    public static double demonstrateLengthConversion(double value, LengthUnit from, LengthUnit to) {
+    public static double demonstrateLengthConversion(double value,LengthUnit from,LengthUnit to) {
 
-        double result = Length.convert(value, from, to);
+    	double result = Length.convert(value, from, to);
 
-        System.out.println("Input: convert(" + value + ", "
-                + from + ", " + to + ") → Output: " + result);
+    	System.out.println("Input: convert(" + value + ", "+ from + ", " + to + ") → Output: " + result);
 
-        return result;
+    	return result;
     }
 
-    public static Length demonstrateLengthConversion(Length length, LengthUnit toUnit) {
+    public static Length demonstrateLengthConversion(Length length,LengthUnit toUnit) {
 
-        Length result = length.convertTo(toUnit);
+    	Length result = length.convertTo(toUnit);
 
-        System.out.println("Input: convert(" + length.getValue() + ", "
-                + length.getUnit() + ", " + toUnit + ") → Output: "
-                + result.getValue());
+    	System.out.println("Input: convert(" + length.getValue() + ", "+ length.getUnit() + ", " + toUnit + ") → Output: "+ result.getValue());
 
-        return result;
+    	return result;
     }
-
+    
     public static void main(String[] args) {
 
         demonstrateLengthConversion(1.0,LengthUnit.FEET,LengthUnit.INCHES);
