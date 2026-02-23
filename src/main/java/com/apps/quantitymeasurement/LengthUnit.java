@@ -15,4 +15,3 @@ public enum LengthUnit {
         return conversionFactor;
     }
 }
-
