@@ -219,7 +219,7 @@
 
 ---
 
-### 📅 UC9: Weight Measurement Equality, Conversion, and Addition
+# Quantity Measurement App - UC9 (Weight Measurement)
 
 - Description: UC9 extends the Quantity Measurement App to support weight measurements (kilogram, gram, pound) alongside length. Weight operations mirror length operations: equality, conversion, and addition. Weight and length are separate, type-safe categories.
 
