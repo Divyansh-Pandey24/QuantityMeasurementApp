@@ -21,5 +21,26 @@
 - Measurement value is `private` and `final` (immutable)
 - `equals()` is overridden correctly
 - `Double.compare()` is used instead of `==`
-- Handles `null`, type mismatch, and same reference cases safely\#QunatityMeasurement 
+- Handles `null`, type mismatch, and same reference cases safely\#QunatityMeasurement
+
+# Quantity Measurement App – UC2 (Inches Equality)
+
+### 📌 Overview
+
+- This module checks whether two measurements given in **inches** are equal.
+- It extends UC1 by supporting equality checks for inches while following the same design principles.
+
+### ⚙️ Use Case: UC2 – Inches Measurement Equality
+
+- Accepts two numerical values in inches
+- Compares them for equality
+- Returns `true` if equal, otherwise false
+
+### ⚙️ Key Implementation Points
+
+- Uses a separate **Inches** class to represent a measurement
+- Measurement value is `private` and `final` (immutable)
+- `equals()` is overridden correctly
+- `Double.compare()` is used instead of `==`
+- Handles `null`, type mismatch, and same reference cases safely
 
