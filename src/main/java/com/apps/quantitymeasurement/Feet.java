@@ -27,7 +27,7 @@ public class Feet {
             return false;
         }
 
-        // 3. Type check
+        // 3. Type check and it is better than instanceof
         if (getClass() != obj.getClass()) {
             return false;
         }
@@ -37,9 +37,4 @@ public class Feet {
         return Double.compare(this.value, other.value) == 0;
     }
 
-    // Good practice: override hashCode when equals is overridden
-    @Override
-    public int hashCode() {
-        return Double.hashCode(value);
-    }
 }
