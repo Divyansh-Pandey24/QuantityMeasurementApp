@@ -267,5 +267,25 @@
 - `hashCode()` and `toString()` overridden for collections and readable output
 - Type safety ensured at compile-time via generics; runtime unit class checks prevent cross-category errors
 - Demonstration methods in `QuantityMeasurementApp` are generic and unified for all categories
+
+---
+
+### ⚙️ Use Case:  UC11 – Volume Measurement Equality, Conversion, and Addition
+
+- Accepts numerical values with their respective volume units (LITRE, MILLILITRE, GALLON)
+- Compares volumes for equality
+- Converts between volume units
+- Adds two volume quantities, optionally specifying a target unit
+
+### ⚙️ Key Implementation Points
+
+- `VolumeUnit` enum implements `IMeasurable` with LITRE as the base unit
+- Conversion factors: MILLILITRE = 0.001 L, GALLON ≈ 3.78541 L
+- Equality uses base unit comparison with epsilon tolerance
+- Generic `Quantity<U>` handles conversion and addition without modification
+- Maintains type safety: volume cannot be mixed with length or weight
+- Objects are immutable; addition and conversion return new instances
+
+---
   
 ---
