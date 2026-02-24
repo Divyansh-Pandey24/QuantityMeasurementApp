@@ -287,5 +287,26 @@
 - Objects are immutable; addition and conversion return new instances
 
 ---
+
+### ⚙️ Use Case: UC12 – Quantity Subtraction & Division
+
+- Subtract two quantities of the same measurement category
+- Divide two quantities to obtain a dimensionless ratio
+- Support `cross-unit` arithmetic (e.g., feet ↔ inches, litre ↔ millilitre)
+- Prevent `cross-category` operations (e.g., length vs weight)
+
+### ⚙️Key Implementation Points
+
+ - Convert operands to base unit before arithmetic
+- Validate:
+    - Null operands
+    - Same measurement category
+    - Finite numeric values
+    - Division by zero
+- Implicit target unit → first operand’s unit
+- Explicit target unit supported
+- Results rounded to two decimal places (subtraction only)
+
+---
   
 ---
