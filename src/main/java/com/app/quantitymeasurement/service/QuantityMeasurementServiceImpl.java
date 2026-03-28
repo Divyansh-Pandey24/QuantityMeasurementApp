@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.quantitymeasurement.exception.QuantityMeasurementException;
-import com.app.quantitymeasurement.model.QuantityDTO;
-import com.app.quantitymeasurement.model.QuantityMeasurementDTO;
-import com.app.quantitymeasurement.model.QuantityMeasurementEntity;
+import com.app.quantitymeasurement.dto.QuantityDTO;
+import com.app.quantitymeasurement.dto.QuantityMeasurementDTO;
+import com.app.quantitymeasurement.entity.QuantityMeasurementEntity;
 import com.app.quantitymeasurement.model.QuantityModel;
 import com.app.quantitymeasurement.repository.QuantityMeasurementRepository;
 import com.app.quantitymeasurement.unit.IMeasurable;
@@ -26,32 +26,17 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
     @Autowired
     private QuantityMeasurementRepository repository;
 
-    // -------------------------------------------------------------------------
-    // Internal enums
-    // -------------------------------------------------------------------------
-
-    /** Operation names used when building entity records. */
+ 
     private enum Operation {
         COMPARE, CONVERT, ADD, SUBTRACT, DIVIDE
     }
 
-    /** Arithmetic operations dispatched by {@link #performArithmetic}. */
+    
     private enum ArithmeticOperation {
         ADD, SUBTRACT, DIVIDE
     }
 
-    // -------------------------------------------------------------------------
-    // Public API
-    // -------------------------------------------------------------------------
-
-    /**
-     * {@inheritDoc}
-     *
-     * Converts both quantities to their base units before comparing.
-     * The result is stored in the repository for audit purposes.
-     *
-     * @throws QuantityMeasurementException if the quantities belong to different categories
-     */
+    
     @Override
     public QuantityMeasurementDTO compare(QuantityDTO thisQuantityDTO, QuantityDTO thatQuantityDTO) {
         QuantityModel<IMeasurable> q1 = convertDtoToModel(thisQuantityDTO);
@@ -82,12 +67,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
         }
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * Linear units are converted via a base-unit pivot. Temperature conversions use
-     * their own non-linear path through {@link #convertTemperatureUnit}.
-     */
+ 
     @Override
     public QuantityMeasurementDTO convert(QuantityDTO thisQuantityDTO, QuantityDTO targetUnitDTO) {
         QuantityModel<IMeasurable> source = convertDtoToModel(thisQuantityDTO);
@@ -112,18 +92,13 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
         }
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * Delegates to {@link #add(QuantityDTO, QuantityDTO, QuantityDTO)} using
-     * {@code thisQuantityDTO} as the target unit.
-     */
+
     @Override
     public QuantityMeasurementDTO add(QuantityDTO thisQuantityDTO, QuantityDTO thatQuantityDTO) {
         return add(thisQuantityDTO, thatQuantityDTO, thisQuantityDTO);
     }
 
-    /** {@inheritDoc} */
+   
     @Override
     public QuantityMeasurementDTO add(QuantityDTO thisQuantityDTO,
                                       QuantityDTO thatQuantityDTO,
@@ -157,18 +132,13 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
         }
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * Delegates to {@link #subtract(QuantityDTO, QuantityDTO, QuantityDTO)} using
-     * {@code thisQuantityDTO} as the target unit.
-     */
+
     @Override
     public QuantityMeasurementDTO subtract(QuantityDTO thisQuantityDTO, QuantityDTO thatQuantityDTO) {
         return subtract(thisQuantityDTO, thatQuantityDTO, thisQuantityDTO);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public QuantityMeasurementDTO subtract(QuantityDTO thisQuantityDTO,
                                            QuantityDTO thatQuantityDTO,
@@ -202,7 +172,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
         }
     }
 
-    /** {@inheritDoc} */
+   
     @Override
     public QuantityMeasurementDTO divide(QuantityDTO thisQuantityDTO, QuantityDTO thatQuantityDTO) {
         QuantityModel<IMeasurable> q1 = convertDtoToModel(thisQuantityDTO);
@@ -231,44 +201,32 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
         }
     }
 
-    /** {@inheritDoc} */
+ 
     @Override
     public List<QuantityMeasurementDTO> getHistoryByOperation(String operation) {
         return QuantityMeasurementDTO.fromEntityList(repository.findByOperation(operation));
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public List<QuantityMeasurementDTO> getHistoryByMeasurementType(String measurementType) {
         return QuantityMeasurementDTO.fromEntityList(
             repository.findByThisMeasurementType(measurementType));
     }
 
-    /** {@inheritDoc} */
+  
     @Override
     public long getOperationCount(String operation) {
         return repository.countByOperationAndErrorFalse(operation);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public List<QuantityMeasurementDTO> getErrorHistory() {
         return QuantityMeasurementDTO.fromEntityList(repository.findByErrorTrue());
     }
 
-    // -------------------------------------------------------------------------
-    // Private helpers
-    // -------------------------------------------------------------------------
 
-    /**
-     * Converts a {@link QuantityDTO} to an internal {@link QuantityModel} by resolving
-     * the unit enum from the DTO's {@code measurementType} and {@code unit} strings.
-     *
-     * @param quantity incoming DTO
-     * @return populated {@code QuantityModel}
-     * @throws IllegalArgumentException if {@code quantity} is {@code null} or the
-     *                                  measurement type is unsupported
-     */
     private QuantityModel<IMeasurable> convertDtoToModel(QuantityDTO quantity) {
         if (quantity == null)
             throw new IllegalArgumentException("QuantityDTO cannot be null");
@@ -276,14 +234,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
             getModelUnit(quantity.getMeasurementType(), quantity.getUnit()));
     }
 
-    /**
-     * Resolves the {@link IMeasurable} unit constant from the given type and name strings.
-     *
-     * @param measurementType measurement category (e.g., {@code "LengthUnit"})
-     * @param unit            unit name (e.g., {@code "FEET"})
-     * @return matching unit enum constant
-     * @throws IllegalArgumentException if the type is unsupported
-     */
+
     private IMeasurable getModelUnit(String measurementType, String unit) {
         switch (measurementType) {
             case "LengthUnit":      return com.app.quantitymeasurement.unit.LengthUnit.valueOf(unit);
@@ -294,14 +245,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
         }
     }
 
-    /**
-     * Compares two quantity models by their base-unit values using
-     * {@link Double#compare} (exact equality, no tolerance).
-     *
-     * @param q1 first model
-     * @param q2 second model
-     * @return {@code true} if the base values are exactly equal
-     */
+
     private <U extends IMeasurable> boolean compareBaseValues(
             QuantityModel<U> q1, QuantityModel<U> q2) {
         return Double.compare(
@@ -309,36 +253,13 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
             q2.getUnit().convertToBaseUnit(q2.getValue())) == 0;
     }
 
-    /**
-     * Converts a temperature value to the target unit via the Celsius pivot.
-     *
-     * @param source     source quantity in some temperature unit
-     * @param targetUnit desired target temperature unit
-     * @return converted temperature value
-     */
+ 
     private <U extends IMeasurable> double convertTemperatureUnit(
             QuantityModel<U> source, U targetUnit) {
         return targetUnit.convertFromBaseUnit(source.getUnit().convertToBaseUnit(source.getValue()));
     }
 
-    /**
-     * Validates that the two operands are compatible for an arithmetic operation.
-     *
-     * <p>Checks performed:</p>
-     * <ol>
-     *   <li>Neither operand is {@code null}.</li>
-     *   <li>Both operands belong to the same measurement category.</li>
-     *   <li>The category supports arithmetic (temperature is rejected).</li>
-     *   <li>When {@code targetRequired} is {@code true}, the target unit is not {@code null}.</li>
-     * </ol>
-     *
-     * @param q1             first operand
-     * @param q2             second operand
-     * @param targetUnit     target unit; may be {@code null} when not required
-     * @param targetRequired {@code true} if the target unit must be non-null
-     * @throws IllegalArgumentException      for null operands, category mismatch, or missing target
-     * @throws UnsupportedOperationException if the category is {@code TemperatureUnit}
-     */
+
     private <U extends IMeasurable> void validateArithmeticOperands(
             QuantityModel<U> q1, QuantityModel<U> q2, U targetUnit, boolean targetRequired) {
 
@@ -361,16 +282,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
             throw new IllegalArgumentException("Target unit is required");
     }
 
-    /**
-     * Converts both operands to base units, applies the arithmetic operation,
-     * and returns the result in base units.
-     *
-     * @param q1        first operand
-     * @param q2        second operand
-     * @param operation operation to apply
-     * @return result in base units
-     * @throws ArithmeticException if {@code operation} is DIVIDE and the divisor is zero
-     */
+
     private <U extends IMeasurable> double performArithmetic(
             QuantityModel<U> q1, QuantityModel<U> q2, ArithmeticOperation operation) {
 
@@ -390,21 +302,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
         return op.applyAsDouble(base1, base2);
     }
 
-    /**
-     * Constructs a {@link QuantityMeasurementEntity} from the given parameters.
-     * Fields that are not applicable for a particular operation may be {@code null}.
-     *
-     * @param q1           first operand model
-     * @param q2           second operand model
-     * @param operation    operation name (lowercase)
-     * @param resultString string result (for compare); {@code null} otherwise
-     * @param resultValue  numeric result; {@code null} for compare
-     * @param resultUnit   result unit name; {@code null} for compare and divide
-     * @param resultType   result measurement type; {@code null} for compare and divide
-     * @param isError      {@code true} for error records
-     * @param errorMessage error description; {@code null} for success records
-     * @return the constructed entity (not yet persisted)
-     */
+
     private QuantityMeasurementEntity buildEntity(
             QuantityModel<IMeasurable> q1,
             QuantityModel<IMeasurable> q2,
@@ -433,19 +331,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
         return entity;
     }
 
-    /**
-     * Persists an error record to the repository when an operation fails.
-     * Called from every catch block so that failed operations always appear in the
-     * audit history, regardless of whether the calling method re-throws the exception.
-     *
-     * <p>Save failures are logged but not re-thrown; the original operation exception
-     * must propagate to the caller undisturbed.</p>
-     *
-     * @param q1           first operand
-     * @param q2           second operand
-     * @param operation    operation that failed
-     * @param errorMessage description of the failure
-     */
+
     private void saveErrorEntity(QuantityModel<IMeasurable> q1,
                                  QuantityModel<IMeasurable> q2,
                                  String operation,

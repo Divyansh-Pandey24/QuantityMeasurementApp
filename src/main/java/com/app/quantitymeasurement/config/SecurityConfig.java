@@ -13,13 +13,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    /**
-     * Configures the application-wide HTTP security filter chain.
-     *
-     * @param http the {@link HttpSecurity} builder
-     * @return the configured {@link SecurityFilterChain}
-     * @throws Exception if the security configuration fails
-     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 

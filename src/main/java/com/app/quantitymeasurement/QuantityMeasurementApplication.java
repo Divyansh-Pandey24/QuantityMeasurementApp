@@ -18,11 +18,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 )
 public class QuantityMeasurementApplication {
 
-    /**
-     * Bootstraps the Spring Boot application.
-     *
-     * @param args command-line arguments passed to the application
-     */
+
     public static void main(String[] args) {
         SpringApplication.run(QuantityMeasurementApplication.class, args);
     }

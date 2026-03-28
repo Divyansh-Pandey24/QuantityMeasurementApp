@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 public class IMeasurableTest {
 
     private static final double EPSILON = 1e-6;

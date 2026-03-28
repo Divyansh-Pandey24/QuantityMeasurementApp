@@ -1,6 +1,6 @@
 package com.app.quantitymeasurement.repository;
 
-import com.app.quantitymeasurement.model.QuantityMeasurementEntity;
+import com.app.quantitymeasurement.entity.QuantityMeasurementEntity;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

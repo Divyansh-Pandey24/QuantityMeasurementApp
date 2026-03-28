@@ -1,7 +1,7 @@
 package com.app.quantitymeasurement.controller;
 
-import com.app.quantitymeasurement.model.QuantityInputDTO;
-import com.app.quantitymeasurement.model.QuantityMeasurementDTO;
+import com.app.quantitymeasurement.dto.QuantityInputDTO;
+import com.app.quantitymeasurement.dto.QuantityMeasurementDTO;
 import com.app.quantitymeasurement.service.IQuantityMeasurementService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.logging.Logger;
 
+
 @RestController
 @RequestMapping("/api/v1/quantities")
 @Tag(name = "Quantity Measurements", 
@@ -30,17 +31,7 @@ public class QuantityMeasurementController {
     @Autowired
     private IQuantityMeasurementService quantityMeasurementService;
 
-    // -------------------------------------------------------------------------
-    // POST — operation endpoints
-    // -------------------------------------------------------------------------
-
-    /**
-     * Compares two quantities for equality after converting both to their base units.
-     *
-     * @param quantityInputDTO request body containing the two operands
-     * @return {@code 200 OK} with a {@link QuantityMeasurementDTO} whose
-     *         {@code resultString} field is {@code "true"} or {@code "false"}
-     */
+    
     @PostMapping("/compare")
     @Operation(summary = "Compare two quantities",
                description = "Compares two quantities for equality after converting to base units")
@@ -56,15 +47,7 @@ public class QuantityMeasurementController {
         ));
     }
 
-    /**
-     * Converts a quantity from its current unit to the unit specified by
-     * {@code thatQuantityDTO}. The value of {@code thatQuantityDTO} is ignored;
-     * only its {@code unit} and {@code measurementType} fields are used.
-     *
-     * @param quantityInputDTO request body containing the source quantity and target unit
-     * @return {@code 200 OK} with a {@link QuantityMeasurementDTO} containing
-     *         the converted value in {@code resultValue}
-     */
+
     @PostMapping("/convert")
     @Operation(summary = "Convert a quantity to a different unit",
                description = "Converts a quantity from its current unit to the specified target unit")
@@ -77,13 +60,7 @@ public class QuantityMeasurementController {
         ));
     }
 
-    /**
-     * Adds two quantities. If {@code targetUnitDTO} is provided, the result is
-     * expressed in that unit; otherwise, the unit of the first operand is used.
-     *
-     * @param quantityInputDTO request body containing the two operands and optional target unit
-     * @return {@code 200 OK} with a {@link QuantityMeasurementDTO} containing the sum
-     */
+
     @PostMapping("/add")
     @Operation(summary = "Add two quantities",
                description = "Adds two quantities, with an optional target unit for the result")
@@ -101,14 +78,7 @@ public class QuantityMeasurementController {
         return ResponseEntity.ok(result);
     }
 
-    /**
-     * Subtracts the second quantity from the first. If {@code targetUnitDTO} is
-     * provided, the result is expressed in that unit; otherwise, the unit of the
-     * first operand is used.
-     *
-     * @param quantityInputDTO request body containing the two operands and optional target unit
-     * @return {@code 200 OK} with a {@link QuantityMeasurementDTO} containing the difference
-     */
+
     @PostMapping("/subtract")
     @Operation(summary = "Subtract two quantities",
                description = "Subtracts the second quantity from the first, with an optional target unit")
@@ -126,13 +96,7 @@ public class QuantityMeasurementController {
         return ResponseEntity.ok(result);
     }
 
-    /**
-     * Divides the first quantity by the second and returns the dimensionless numeric ratio.
-     *
-     * @param quantityInputDTO request body containing the dividend and divisor
-     * @return {@code 200 OK} with a {@link QuantityMeasurementDTO} whose
-     *         {@code resultValue} holds the ratio
-     */
+    
     @PostMapping("/divide")
     @Operation(summary = "Divide two quantities",
                description = "Divides the first quantity by the second and returns the numeric ratio")
@@ -145,16 +109,7 @@ public class QuantityMeasurementController {
         ));
     }
 
-    // -------------------------------------------------------------------------
-    // GET — history and count endpoints
-    // -------------------------------------------------------------------------
 
-    /**
-     * Returns all persisted measurement records for the given operation type.
-     *
-     * @param operation operation name to filter by (e.g., {@code compare}, {@code add})
-     * @return {@code 200 OK} with a list of matching {@link QuantityMeasurementDTO} records
-     */
     @GetMapping("/history/operation/{operation}")
     @Operation(summary = "Get operation history by type",
                description = "Returns all measurement records for the specified operation type")
@@ -165,14 +120,7 @@ public class QuantityMeasurementController {
         return ResponseEntity.ok(quantityMeasurementService.getHistoryByOperation(operation));
     }
 
-    /**
-     * Returns all persisted measurement records whose first operand belongs to
-     * the given measurement type.
-     *
-     * @param measurementType measurement category to filter by
-     *                        (e.g., {@code LengthUnit}, {@code WeightUnit})
-     * @return {@code 200 OK} with a list of matching {@link QuantityMeasurementDTO} records
-     */
+
     @GetMapping("/history/type/{measurementType}")
     @Operation(summary = "Get measurement history by type",
                description = "Returns all measurement records for the specified measurement type")
@@ -183,11 +131,7 @@ public class QuantityMeasurementController {
         return ResponseEntity.ok(quantityMeasurementService.getHistoryByMeasurementType(measurementType));
     }
 
-    /**
-     * Returns all persisted records that represent failed (error) operations.
-     *
-     * @return {@code 200 OK} with a list of error {@link QuantityMeasurementDTO} records
-     */
+
     @GetMapping("/history/errored")
     @Operation(summary = "Get error history",
                description = "Returns all measurement records that resulted in an error")
@@ -196,12 +140,6 @@ public class QuantityMeasurementController {
         return ResponseEntity.ok(quantityMeasurementService.getErrorHistory());
     }
 
-    /**
-     * Returns the count of successful (non-error) operations for the given type.
-     *
-     * @param operation operation type to count (e.g., {@code COMPARE}, {@code ADD})
-     * @return {@code 200 OK} with the count as a {@code Long}
-     */
     @GetMapping("/count/{operation}")
     @Operation(summary = "Get operation count",
                description = "Returns the count of successful operations for the specified operation type")
