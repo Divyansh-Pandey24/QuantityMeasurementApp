@@ -12,42 +12,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-/**
- * UserPrincipal
- *
- * A unified Security principal that implements both
- * {@link UserDetails} (for local JWT/form-based authentication) and
- * {@link OAuth2User} (for Google OAuth2 login).
- *
- * <p>By implementing both interfaces, a single principal type can flow through
- * all Spring Security authentication paths:</p>
- * <ol>
- *   <li><b>Local login path</b> — {@code CustomUserDetailsService} wraps a
- *       {@link User} entity in a {@code UserPrincipal} and returns it to
- *       {@code DaoAuthenticationProvider}.</li>
- *   <li><b>Google OAuth2 path</b> — {@code CustomOAuth2UserService} wraps the
- *       loaded/created {@link User} in a {@code UserPrincipal} and returns it to
- *       {@code OAuth2LoginAuthenticationFilter}. The raw Google attribute map is
- *       also stored so Spring Security can forward it if needed.</li>
- *   <li><b>JWT filter path</b> — {@code JwtAuthenticationFilter} calls
- *       {@code CustomUserDetailsService.loadUserByUsername(email)} which also
- *       returns a {@code UserPrincipal}; this is placed into the
- *       {@link org.springframework.security.core.context.SecurityContext} for the
- *       duration of the request.</li>
- * </ol>
- *
- * <p><b>Authority mapping:</b> the single {@link com.app.quantitymeasurement.enums.Role}
- * assigned to the user is converted to a {@link SimpleGrantedAuthority} with the
- * {@code ROLE_} prefix required by Spring Security's expression-language matchers
- * (e.g., {@code hasRole("USER")}).</p>
- *
- * <p>All {@link UserDetails} lock/expiry flags return {@code true} (account is valid);
- * extend this class if account suspension or expiry is required in a future UC.</p>
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
+
 public class UserPrincipal implements UserDetails, OAuth2User {
 
     /*

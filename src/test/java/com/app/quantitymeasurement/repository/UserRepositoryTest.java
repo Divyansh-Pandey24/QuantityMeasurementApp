@@ -13,21 +13,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * UserRepositoryTest
- *
- * {@code @DataJpaTest} slice tests for {@link UserRepository}.
- * An in-memory H2 database is used; the JPA schema is created automatically
- * from the entity annotations.
- *
- * <p>Covers {@link com.app.quantitymeasurement.enums.AuthProvider#LOCAL},
- * {@link com.app.quantitymeasurement.enums.AuthProvider#GOOGLE}, and
- * {@link com.app.quantitymeasurement.enums.AuthProvider#GITHUB} provider paths.</p>
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
+
 @DataJpaTest
 @ActiveProfiles("test")
 public class UserRepositoryTest {

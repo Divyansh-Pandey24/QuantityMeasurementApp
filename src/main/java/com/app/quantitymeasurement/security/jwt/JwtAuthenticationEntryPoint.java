@@ -17,46 +17,7 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * JwtAuthenticationEntryPoint
- *
- * Implements Spring Security's {@link AuthenticationEntryPoint} to handle
- * requests that reach a protected endpoint without a valid JWT (or with no
- * JWT at all).
- *
- * <p>Spring Security invokes this component when:</p>
- * <ul>
- *   <li>An unauthenticated request (no {@code Authorization} header, or an
- *       expired/invalid JWT) attempts to access a {@code .authenticated()}
- *       endpoint.</li>
- *   <li>An authenticated request attempts to access a resource that requires
- *       a specific role — in that case {@link JwtAccessDeniedHandler} is
- *       invoked instead (403 Forbidden).</li>
- * </ul>
- *
- * <p>Without this component, Spring Security would return a redirect to a
- * login page, which is inappropriate for a stateless REST API. This entry
- * point short-circuits that behaviour and returns a structured JSON
- * {@code 401 Unauthorized} response instead.</p>
- *
- * <p><b>Example response body:</b></p>
- * <pre>
- * HTTP/1.1 401 Unauthorized
- * Content-Type: application/json
- *
- * {
- *   "timestamp": "2024-01-01T12:00:00",
- *   "status":    401,
- *   "error":     "Unauthorized",
- *   "message":   "Full authentication is required to access this resource",
- *   "path":      "/api/v1/quantities/add"
- * }
- * </pre>
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
+
 @Slf4j
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {

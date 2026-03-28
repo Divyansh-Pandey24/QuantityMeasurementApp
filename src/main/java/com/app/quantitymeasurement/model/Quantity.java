@@ -4,31 +4,7 @@ import java.util.function.DoubleBinaryOperator;
 import com.app.quantitymeasurement.unit.IMeasurable;
 import com.app.quantitymeasurement.unit.SupportsArithmetic;
 
-/**
- * Quantity
- *
- * Immutable domain model that pairs a numeric value with a measurable unit and
- * exposes operations for equality comparison, unit conversion, addition, subtraction,
- * and division.
- *
- * <p>All arithmetic operations convert both operands to their common base unit before
- * applying the calculation, ensuring correct results regardless of the input units.
- * Operations return a <em>new</em> {@code Quantity} instance — this class is immutable.</p>
- *
- * <p>Arithmetic is only allowed for units that implement {@link SupportsArithmetic}
- * (LengthUnit, WeightUnit, VolumeUnit). Attempting arithmetic on TemperatureUnit throws
- * {@link UnsupportedOperationException}.</p>
- *
- * <p>Two quantities are considered equal when their base-unit values differ by less than
- * {@code 1e-6}. Cross-category comparisons (e.g., length vs. weight) always return
- * {@code false}.</p>
- *
- * @param <U> unit type, which must implement {@link IMeasurable}
- *
- * @author Abhishek Puri Goswami
- * @version 17.0
- * @since 1.0
- */
+
 public final class Quantity<U extends IMeasurable> {
 
     private final double value;

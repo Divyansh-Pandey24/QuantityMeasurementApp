@@ -19,45 +19,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * OAuth2AuthenticationSuccessHandler
- *
- * Invoked by Spring Security immediately after a successful Google OAuth2
- * login. Its sole responsibility is to:
- * <ol>
- *   <li>Extract the authenticated {@link UserPrincipal} from the
- *       {@link Authentication} object.</li>
- *   <li>Generate a short-lived JWT via {@link JwtTokenProvider}.</li>
- *   <li>Redirect the browser to the configured frontend URL with the JWT
- *       appended as a query parameter so the client-side application can
- *       store it and attach it to subsequent API calls.</li>
- * </ol>
- *
- * <p><b>Redirect target:</b></p>
- * <pre>
- * ${app.oauth2.redirect-uri}?token=&lt;jwt&gt;
- * </pre>
- *
- * <p>For example, if the frontend runs at {@code http://localhost:3000} and the
- * property is {@code app.oauth2.redirect-uri=http://localhost:3000/oauth2/callback},
- * the redirect will be:</p>
- * <pre>
- * http://localhost:3000/oauth2/callback?token=eyJhbGciOiJIUzI1NiJ9...
- * </pre>
- *
- * <p><b>Security consideration:</b> passing the JWT as a query parameter is
- * convenient for SPAs but means the token may appear in server logs and browser
- * history. For higher-security deployments, consider using a short-lived
- * one-time code and exchanging it for a token via a second POST, or switching
- * to HTTP-only cookies. UC-18 uses the query-parameter approach for simplicity.</p>
- *
- * <p>Extends {@link SimpleUrlAuthenticationSuccessHandler} to inherit the default
- * redirect logic and override only the parts specific to JWT issuance.</p>
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
 @Slf4j
 @Component
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {

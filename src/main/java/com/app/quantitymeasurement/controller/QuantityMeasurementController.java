@@ -18,41 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * QuantityMeasurementController
- *
- * REST controller that exposes quantity measurement operations as HTTP endpoints.
- * All business logic is delegated to {@link IQuantityMeasurementService}; this
- * class is responsible only for request routing, input validation, and response
- * wrapping.
- *
- * <p><b>Base URL:</b> {@code /api/v1/quantities}</p>
- *
- * <p><b>POST endpoints (operations):</b></p>
- * <ul>
- *   <li>{@code /compare}  — compare two quantities for equality</li>
- *   <li>{@code /convert}  — convert a quantity to a different unit</li>
- *   <li>{@code /add}      — add two quantities</li>
- *   <li>{@code /subtract} — subtract one quantity from another</li>
- *   <li>{@code /divide}   — divide one quantity by another</li>
- * </ul>
- *
- * <p><b>GET endpoints (history and counts):</b></p>
- * <ul>
- *   <li>{@code /history/operation/{operation}}     — records by operation type</li>
- *   <li>{@code /history/type/{measurementType}}    — records by measurement type</li>
- *   <li>{@code /history/errored}                   — all failed operation records</li>
- *   <li>{@code /count/{operation}}                 — count of successful operations</li>
- * </ul>
- *
- * All POST endpoints accept a {@link QuantityInputDTO} request body. Bean Validation
- * (@Valid) is applied before the service is called; validation failures are handled
- * centrally by {@code GlobalExceptionHandler}.
- *
- * @author Abhishek Puri Goswami
- * @version 17.0
- * @since 17.0
- */
+
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/quantities")

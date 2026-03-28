@@ -5,23 +5,7 @@ import com.app.quantitymeasurement.dto.request.QuantityMeasurementDTO;
 
 import java.util.List;
 
-/**
- * IQuantityMeasurementService
- *
- * Service interface defining the business operations available in the Quantity
- * Measurement application.
- *
- * <p>Every operation accepts one or two {@link QuantityDTO} inputs and returns a
- * {@link QuantityMeasurementDTO} that includes both the operand details and the
- * result, making it suitable for direct use as an API response.</p>
- *
- * <p>History and count methods allow callers to query persisted operation records
- * without going directly to the repository.</p>
- *
- * @author Abhishek Puri Goswami
- * @version 17.0
- * @since 1.0
- */
+
 public interface IQuantityMeasurementService {
 
     /**

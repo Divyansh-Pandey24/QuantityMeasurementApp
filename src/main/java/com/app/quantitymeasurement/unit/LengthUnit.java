@@ -1,29 +1,6 @@
 package com.app.quantitymeasurement.unit;
 
-/**
- * LengthUnit
- *
- * Enumeration of supported length measurement units.
- *
- * Implements {@link IMeasurable} and {@link SupportsArithmetic}, enabling full
- * arithmetic support (addition, subtraction, division) in the service layer.
- *
- * <p><b>Base unit:</b> INCHES. All conversions are performed by first converting to
- * inches and then to the target unit. Results are rounded to 6 decimal places.</p>
- *
- * <table border="1">
- *   <caption>Conversion factors to INCHES</caption>
- *   <tr><th>Unit</th><th>Factor</th></tr>
- *   <tr><td>FEET</td><td>12.0</td></tr>
- *   <tr><td>INCHES</td><td>1.0</td></tr>
- *   <tr><td>YARDS</td><td>36.0</td></tr>
- *   <tr><td>CENTIMETERS</td><td>1 / 2.54 ≈ 0.393701</td></tr>
- * </table>
- *
- * @author Abhishek Puri Goswami
- * @version 17.0
- * @since 1.0
- */
+
 public enum LengthUnit implements IMeasurable, SupportsArithmetic {
 
     FEET(12.0),

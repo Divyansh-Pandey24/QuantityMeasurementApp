@@ -15,31 +15,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-/**
- * OAuth2AuthenticationFailureHandler
- *
- * Invoked by Spring Security when the Google OAuth2 login flow fails at any
- * stage — for example, if the user denies the consent screen, if Google returns
- * an error code, or if {@code CustomOAuth2UserService} throws an exception
- * (e.g., a provider-conflict error for an account already registered locally).
- *
- * <p><b>Behaviour:</b> the handler redirects the browser to the configured
- * frontend URL with the error message appended as a query parameter:</p>
- * <pre>
- * ${app.oauth2.redirect-uri}?error=&lt;URL-encoded message&gt;
- * </pre>
- *
- * <p>This approach allows the frontend SPA to display a human-readable error
- * message (e.g., "An account with this email already exists — please use your
- * password to log in") without requiring a separate API call.</p>
- *
- * <p>Extends {@link SimpleUrlAuthenticationFailureHandler} to reuse its redirect
- * strategy and override only the handler method.</p>
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
+
 @Slf4j
 @Component
 public class OAuth2AuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {

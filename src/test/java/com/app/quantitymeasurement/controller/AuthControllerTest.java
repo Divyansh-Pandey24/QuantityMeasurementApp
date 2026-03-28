@@ -27,17 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-/**
- * AuthControllerTest
- *
- * Integration tests for {@link AuthController} using {@code @SpringBootTest} with
- * {@code @AutoConfigureMockMvc}. The full security filter chain is active so that
- * JWT validation, entry-point, and access-denied responses are tested end-to-end.
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
+
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")

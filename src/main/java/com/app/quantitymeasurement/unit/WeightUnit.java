@@ -1,27 +1,6 @@
 package com.app.quantitymeasurement.unit;
 
-/**
- * WeightUnit
- *
- * Enumeration of supported weight measurement units.
- *
- * Implements {@link IMeasurable} and {@link SupportsArithmetic}, enabling full
- * arithmetic support (addition, subtraction, division) in the service layer.
- *
- * <p><b>Base unit:</b> KILOGRAM. Results are rounded to 6 decimal places.</p>
- *
- * <table border="1">
- *   <caption>Conversion factors to KILOGRAM</caption>
- *   <tr><th>Unit</th><th>Factor</th></tr>
- *   <tr><td>KILOGRAM</td><td>1.0</td></tr>
- *   <tr><td>GRAM</td><td>0.001</td></tr>
- *   <tr><td>POUND</td><td>0.453592</td></tr>
- * </table>
- *
- * @author Abhishek Puri Goswami
- * @version 17.0
- * @since 1.0
- */
+
 public enum WeightUnit implements IMeasurable, SupportsArithmetic {
 
     KILOGRAM(1.0),

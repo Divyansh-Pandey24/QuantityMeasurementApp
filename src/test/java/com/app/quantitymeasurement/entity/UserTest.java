@@ -8,17 +8,7 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * UserTest
- *
- * Unit tests for the {@link User} entity covering builder construction,
- * default field values, the {@link User#prePersist()} lifecycle callback,
- * and the custom {@link User#toString()} that excludes the password hash.
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
+
 public class UserTest {
 
     // =========================================================================

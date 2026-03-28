@@ -15,17 +15,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * QuantityArithmeticTest
- *
- * Tests arithmetic operations (add, subtract, divide) on Quantity,
- * covering: same-unit, cross-unit, explicit target unit, immutability,
- * null/cross-category guards, temperature rejection, internal helper
- * visibility, ArithmeticOperation enum dispatch, and edge values.
- * 
- * @author Abhishek Puri Goswami
- * @version 17.0
- */
+
 public class QuantityArithmeticTest {
 
     private static final double EPSILON = 1e-6;

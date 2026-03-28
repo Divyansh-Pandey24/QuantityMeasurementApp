@@ -10,37 +10,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-/**
- * QuantityMeasurementEntity
- *
- * JPA entity that records a single quantity measurement operation in the database.
- * Each row captures both operands, the operation performed, the result, and — when
- * the operation failed — an error message and flag.
- *
- * <p>Field groups:</p>
- * <ul>
- *   <li><b>Operands</b> — first ({@code this*}) and second ({@code that*}) quantity
- *       value, unit, and measurement type.</li>
- *   <li><b>Result</b> — {@code resultString} for compare ("true"/"false"),
- *       {@code resultValue} / {@code resultUnit} / {@code resultMeasurementType}
- *       for arithmetic/convert.</li>
- *   <li><b>Error</b> — {@code error} flag and {@code errorMessage}.</li>
- *   <li><b>Audit</b> — {@code createdAt} timestamp, set automatically via
- *       {@code @PrePersist}.</li>
- * </ul>
- *
- * <p>Lombok {@code @Data} generates getters, setters, {@code toString}, and
- * a default equals/hashCode (overridden by {@code @EqualsAndHashCode}).
- * {@code @EqualsAndHashCode} restricts equality to the operand fields and operation,
- * matching the business identity of a measurement record rather than database identity.</p>
- *
- * <p>The {@code boolean error} field is mapped to the column {@code is_error}
- * to avoid any reserved-word conflicts in the underlying database.</p>
- *
- * @author Abhishek Puri Goswami
- * @version 17.0
- * @since 1.0
- */
+
 @Entity
 @Table(name = "quantity_measurement")
 @Data

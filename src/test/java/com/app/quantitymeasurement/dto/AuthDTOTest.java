@@ -19,17 +19,7 @@ import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 
-/**
- * AuthDTOTest
- *
- * Bean Validation tests for {@link AuthRequest} and {@link RegisterRequest}.
- * Uses the Jakarta Validation API directly (no Spring context needed) to verify
- * that constraint violations are triggered for invalid inputs.
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
+
 public class AuthDTOTest {
 
     private static Validator validator;

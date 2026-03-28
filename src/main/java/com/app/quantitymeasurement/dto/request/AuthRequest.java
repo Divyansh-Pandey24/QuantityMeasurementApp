@@ -6,28 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * AuthRequest
- *
- * Data Transfer Object for the local login request body.
- *
- * <p>Clients POST this payload to {@code /api/v1/auth/login} to obtain a
- * JWT access token. Both fields are validated before the service layer is
- * reached; constraint violations are handled by {@code GlobalExceptionHandler}
- * and result in a {@code 400 Bad Request} response.</p>
- *
- * <p><b>Example JSON payload:</b></p>
- * <pre>
- * {
- *   "email":    "user@example.com",
- *   "password": "mySecretPassword"
- * }
- * </pre>
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -1,26 +1,6 @@
 package com.app.quantitymeasurement.unit;
 
-/**
- * IMeasurable
- *
- * Core contract that every measurement unit in the Quantity Measurement system
- * must fulfil. Implemented by {@code LengthUnit}, {@code WeightUnit},
- * {@code VolumeUnit}, and {@code TemperatureUnit}.
- *
- * <p>The interface defines:</p>
- * <ul>
- *   <li>Unit identity — {@link #getUnitName()} and {@link #getMeasurementType()}.</li>
- *   <li>Base-unit conversion — {@link #convertToBaseUnit} and
- *       {@link #convertFromBaseUnit}.</li>
- *   <li>Dynamic lookup — {@link #getUnitInstance} resolves a unit by name at runtime.</li>
- *   <li>Arithmetic support check — {@link #supportsArithmetic()} and
- *       {@link #validateOperationSupport(String)} (default methods).</li>
- * </ul>
- *
- * @author Abhishek Puri Goswami
- * @version 17.0
- * @since 1.0
- */
+
 public interface IMeasurable {
 
     /**

@@ -17,43 +17,7 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * JwtAccessDeniedHandler
- *
- * Implements Spring Security's {@link AccessDeniedHandler} to handle requests
- * from authenticated users who lack sufficient authority (role) to access a
- * protected endpoint.
- *
- * <p><b>When is this handler invoked?</b></p>
- * <ul>
- *   <li>A user with role {@code USER} attempts to access an {@code ADMIN}-only
- *       endpoint (e.g., {@code GET /api/v1/quantities/history/errored}).</li>
- *   <li>Any authenticated request that fails a {@code hasRole()} or
- *       {@code hasAuthority()} check configured in {@code SecurityConfig}.</li>
- * </ul>
- *
- * <p>This is distinct from {@link JwtAuthenticationEntryPoint}, which handles
- * <em>unauthenticated</em> requests (401). This handler handles requests that
- * are authenticated but <em>not authorised</em> (403).</p>
- *
- * <p><b>Example response body:</b></p>
- * <pre>
- * HTTP/1.1 403 Forbidden
- * Content-Type: application/json
- *
- * {
- *   "timestamp": "2024-01-01T12:00:00",
- *   "status":    403,
- *   "error":     "Forbidden",
- *   "message":   "Access is denied",
- *   "path":      "/api/v1/quantities/history/errored"
- * }
- * </pre>
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
+
 @Slf4j
 @Component
 public class JwtAccessDeniedHandler implements AccessDeniedHandler {

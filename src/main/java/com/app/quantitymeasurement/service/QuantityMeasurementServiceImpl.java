@@ -16,31 +16,7 @@ import com.app.quantitymeasurement.model.QuantityModel;
 import com.app.quantitymeasurement.repository.QuantityMeasurementRepository;
 import com.app.quantitymeasurement.unit.IMeasurable;
 
-/**
- * QuantityMeasurementServiceImpl
- *
- * Service layer implementation for all quantity measurement business operations.
- * Registered as a Spring bean via {@code @Service}; the {@link QuantityMeasurementRepository}
- * is injected by Spring through {@code @Autowired} field injection.
- *
- * <p><b>Transaction strategy:</b> {@code @Transactional} is deliberately <em>not</em>
- * applied so that error records are written to the repository even when an operation
- * throws an exception. Each public method persists one entity on success and one
- * error entity on failure, providing a full audit trail regardless of outcome.</p>
- *
- * <p><b>Conversion strategy:</b> incoming {@link QuantityDTO} objects are converted
- * to internal {@link QuantityModel} instances via {@link #convertDtoToModel}. Results
- * are mapped back to {@link QuantityMeasurementDTO} through
- * {@link QuantityMeasurementDTO#fromEntity}.</p>
- *
- * <p><b>Temperature arithmetic:</b> temperature values cannot be meaningfully added
- * or subtracted (adding 20°C to 10°C does not produce 30°C in a physical sense), so
- * these operations are explicitly rejected with {@link UnsupportedOperationException}.</p>
- *
- * @author Abhishek Puri Goswami
- * @version 17.0
- * @since 1.0
- */
+
 @Slf4j
 @Service
 public class QuantityMeasurementServiceImpl implements IQuantityMeasurementService {

@@ -26,27 +26,7 @@ import com.app.quantitymeasurement.exception.QuantityMeasurementException;
 import com.app.quantitymeasurement.repository.QuantityMeasurementRepository;
 import com.app.quantitymeasurement.service.QuantityMeasurementServiceImpl;
 
-/**
- * QuantityMeasurementServiceIntegrationTest
- *
- * Ports all 55 UC16 service test scenarios to the UC17 Spring service.
- * Tests call the service directly (compare, convert, add, subtract, divide)
- * and assert on the returned QuantityMeasurementDTO instead of raw values.
- *
- * All UC16 spec items preserved:
- * - Comparison across all categories (length, weight, volume, temperature)
- * - Conversion across all categories
- * - Addition (2-arg and 3-arg with target unit)
- * - Subtraction (2-arg and 3-arg)
- * - Division
- * - Exception handling: temperature arithmetic, cross-category, divide-by-zero
- * - End-to-end integration flows (all ops in sequence)
- * - Repository tracking: every operation is saved
- * - Scalability: existing ops produce same results after full suite run
- *
- * @author Abhishek Puri Goswami
- * @version 17.0
- */
+
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 public class QuantityMeasurementServiceIntegrationTest {

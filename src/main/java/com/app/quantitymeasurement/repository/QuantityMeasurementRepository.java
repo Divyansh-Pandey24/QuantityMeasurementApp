@@ -9,29 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- * QuantityMeasurementRepository
- *
- * Spring Data JPA repository for {@link QuantityMeasurementEntity}.
- *
- * Extending {@link JpaRepository} provides standard CRUD operations out of the box.
- * The additional methods below follow the Spring Data derived-query naming convention
- * or use {@code @Query} for custom JPQL.
- *
- * <p>Query method overview:</p>
- * <ul>
- *   <li>{@link #findByOperation}             — all records for an operation type.</li>
- *   <li>{@link #findByThisMeasurementType}   — all records for a measurement category.</li>
- *   <li>{@link #findByCreatedAtAfter}         — all records created after a given time.</li>
- *   <li>{@link #findSuccessfulByOperation}    — non-error records for an operation (custom JPQL).</li>
- *   <li>{@link #countByOperationAndErrorFalse} — count of successful records by operation.</li>
- *   <li>{@link #findByErrorTrue}              — all error records.</li>
- * </ul>
- *
- * @author Abhishek Puri Goswami
- * @version 17.0
- * @since 17.0
- */
+
 @Repository
 public interface QuantityMeasurementRepository
         extends JpaRepository<QuantityMeasurementEntity, Long> {

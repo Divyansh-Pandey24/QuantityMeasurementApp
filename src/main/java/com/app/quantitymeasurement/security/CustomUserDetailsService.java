@@ -10,34 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * CustomUserDetailsService
- *
- * Spring Security {@link UserDetailsService} implementation that loads a user
- * record from the database by email address and wraps it in a
- * {@link UserPrincipal} for use by the authentication infrastructure.
- *
- * <p><b>Integration points:</b></p>
- * <ul>
- *   <li><b>Local login</b> — {@code DaoAuthenticationProvider} calls
- *       {@link #loadUserByUsername(String)} after the client POSTs to
- *       {@code /api/v1/auth/login}. The returned {@link UserDetails} is used
- *       to verify the supplied password against the stored BCrypt hash.</li>
- *   <li><b>JWT filter</b> — {@link JwtAuthenticationFilter} calls
- *       {@link #loadUserByUsername(String)} on every request that carries a
- *       valid JWT, to confirm the user still exists in the database and to
- *       re-read the current role and enabled status.</li>
- * </ul>
- *
- * <p><b>Transaction:</b> the {@code @Transactional(readOnly = true)} annotation
- * ensures that the JPA session used by {@link UserRepository} is properly bounded
- * and that the query is executed in a read-only transaction, allowing the
- * connection pool to route it to a read replica if one is configured.</p>
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
+
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 

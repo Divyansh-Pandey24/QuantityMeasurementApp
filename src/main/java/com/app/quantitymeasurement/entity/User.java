@@ -16,49 +16,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-/**
- * User
- *
- * JPA entity that represents an application user. A user can be authenticated
- * either through the local email/password flow or through Google OAuth2.
- *
- * <p><b>Table:</b> {@code app_user}
- * (Named {@code app_user} rather than {@code user} to avoid conflicts with the
- * SQL reserved word {@code USER} on MySQL and H2.)</p>
- *
- * <p><b>Authentication providers:</b></p>
- * <ul>
- *   <li><b>LOCAL</b> — a BCrypt-hashed password is stored in the {@code password}
- *       column. The {@code provider_id} column is left {@code NULL}.</li>
- *   <li><b>GOOGLE</b> — the Google subject identifier is stored in
- *       {@code provider_id}. The {@code password} column is {@code NULL}
- *       because Google manages credentials.</li>
- * </ul>
- *
- * <p><b>Field highlights:</b></p>
- * <ul>
- *   <li>{@code email}      — unique, case-insensitive identity key used as the
- *       JWT subject and Spring Security principal name.</li>
- *   <li>{@code role}       — single role per user; maps to the {@link Role} enum.
- *       Defaults to {@link Role#USER} at registration time.</li>
- *   <li>{@code provider}   — {@link AuthProvider#LOCAL} or
- *       {@link AuthProvider#GOOGLE}.</li>
- *   <li>{@code providerId} — the opaque identifier returned by the OAuth2
- *       provider (Google subject / {@code sub} claim).</li>
- *   <li>{@code imageUrl}   — optional profile picture URL returned by Google.</li>
- *   <li>{@code createdAt}  — automatically set by {@code @PrePersist}; never
- *       updated after insert.</li>
- * </ul>
- *
- * <p>Lombok {@code @Data} generates getters, setters, {@code toString},
- * {@code equals}, and {@code hashCode}. {@code @Builder} provides a fluent
- * construction API. {@code @NoArgsConstructor} / {@code @AllArgsConstructor}
- * are required by both JPA (reflection-based instantiation) and the builder.</p>
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
+
 @Entity
 @Table(
     name = "app_user",

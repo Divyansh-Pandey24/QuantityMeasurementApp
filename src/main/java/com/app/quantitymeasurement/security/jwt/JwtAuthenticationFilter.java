@@ -19,48 +19,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * JwtAuthenticationFilter
- *
- * A Spring Security {@link OncePerRequestFilter} that intercepts every inbound
- * HTTP request exactly once per request cycle, extracts a JWT from the
- * {@code Authorization} header, validates it, and — if valid — populates the
- * {@link org.springframework.security.core.context.SecurityContext} with an
- * authenticated {@link org.springframework.security.core.Authentication} object.
- *
- * <p><b>Processing flow for each request:</b></p>
- * <ol>
- *   <li>Extract the raw JWT from the {@code Authorization: Bearer &lt;token&gt;} header.</li>
- *   <li>If no token is present (or the header is malformed), skip this filter and
- *       continue the chain — the downstream {@code SecurityFilterChain} will decide
- *       whether the endpoint requires authentication.</li>
- *   <li>Validate the token's signature and expiry via {@link JwtTokenProvider}.</li>
- *   <li>Extract the subject (email) and roles from the token claims.</li>
- *   <li>Load the full {@link UserDetails} from {@link CustomUserDetailsService}
- *       (this confirms the user still exists in the database).</li>
- *   <li>Build a {@link UsernamePasswordAuthenticationToken} and set it in the
- *       {@link SecurityContextHolder} so downstream components can access the
- *       current principal via {@code SecurityContextHolder.getContext().getAuthentication()}.</li>
- *   <li>Continue the filter chain.</li>
- * </ol>
- *
- * <p><b>Why extend {@link OncePerRequestFilter}?</b><br>
- * In servlet-based Spring applications, filters can theoretically be invoked
- * multiple times per request (e.g., on forwards and includes). Extending
- * {@code OncePerRequestFilter} guarantees exactly one execution per request,
- * preventing duplicate authentication side-effects.</p>
- *
- * <p><b>Why not load UserDetails from the token alone?</b><br>
- * Loading from the database on every request adds a query, but it ensures that
- * revoked or deleted users are rejected immediately (the moment their account is
- * removed from the database), rather than being permitted until their token expires.
- * In UC-18, roles are also re-read from the database, not from the token claims,
- * so a role change takes effect on the next request.</p>
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
+
 @Slf4j
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {

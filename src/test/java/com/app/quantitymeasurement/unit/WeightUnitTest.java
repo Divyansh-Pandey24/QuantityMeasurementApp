@@ -4,18 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * WeightUnitTest
- *
- * Tests the WeightUnit enum's conversion factors, base unit conversions,
- * unit name, measurement type, and arithmetic support.
- *
- * Base unit for weight is KILOGRAM.
- * Conversion factor for each unit equals convertToBaseUnit(1.0).
- * 
- * @author Abhishek Puri Goswami
- * @version 17.0
- */
+
 public class WeightUnitTest {
 
     private static final double EPSILON = 1e-6;

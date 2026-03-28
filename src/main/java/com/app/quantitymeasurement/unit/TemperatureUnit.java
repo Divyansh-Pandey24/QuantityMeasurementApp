@@ -2,29 +2,7 @@ package com.app.quantitymeasurement.unit;
 
 import java.util.function.Function;
 
-/**
- * TemperatureUnit
- *
- * Enumeration of supported temperature measurement units.
- *
- * Implements {@link IMeasurable} but does <em>not</em> implement
- * {@link SupportsArithmetic}, so arithmetic operations (add, subtract) are
- * rejected by the service layer. Conversion between temperature units is
- * fully supported.
- *
- * <p>Temperature conversions are non-linear, so each constant stores two
- * {@link Function} objects rather than a single multiplication factor:</p>
- * <ul>
- *   <li>{@code toBase}   — converts this unit's value to the base unit (CELSIUS).</li>
- *   <li>{@code fromBase} — converts a CELSIUS value to this unit.</li>
- * </ul>
- *
- * <p><b>Base unit:</b> CELSIUS.</p>
- *
- * @author Abhishek Puri Goswami
- * @version 17.0
- * @since 1.0
- */
+
 public enum TemperatureUnit implements IMeasurable {
 
     CELSIUS(

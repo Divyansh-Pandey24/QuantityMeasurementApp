@@ -1,27 +1,6 @@
 package com.app.quantitymeasurement.unit;
 
-/**
- * VolumeUnit
- *
- * Enumeration of supported volume measurement units.
- *
- * Implements {@link IMeasurable} and {@link SupportsArithmetic}, enabling full
- * arithmetic support (addition, subtraction, division) in the service layer.
- *
- * <p><b>Base unit:</b> LITRE. Results are rounded to 6 decimal places.</p>
- *
- * <table border="1">
- *   <caption>Conversion factors to LITRE</caption>
- *   <tr><th>Unit</th><th>Factor</th></tr>
- *   <tr><td>LITRE</td><td>1.0</td></tr>
- *   <tr><td>MILLILITRE</td><td>0.001</td></tr>
- *   <tr><td>GALLON</td><td>3.785412</td></tr>
- * </table>
- *
- * @author Abhishek Puri Goswami
- * @version 17.0
- * @since 1.0
- */
+
 public enum VolumeUnit implements IMeasurable, SupportsArithmetic {
 
     LITRE(1.0),

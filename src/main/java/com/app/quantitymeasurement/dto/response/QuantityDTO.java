@@ -6,34 +6,7 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * QuantityDTO
- *
- * Data Transfer Object that carries a single quantity — a numeric value paired with
- * its measurement unit — between the API layer and the service layer.
- *
- * <p>Supported measurement categories and their units:</p>
- * <ul>
- *   <li><b>LengthUnit</b>      — FEET, INCHES, YARDS, CENTIMETERS</li>
- *   <li><b>VolumeUnit</b>      — LITRE, MILLILITRE, GALLON</li>
- *   <li><b>WeightUnit</b>      — KILOGRAM, GRAM, POUND</li>
- *   <li><b>TemperatureUnit</b> — CELSIUS, FAHRENHEIT, KELVIN</li>
- * </ul>
- *
- * <p>Bean Validation constraints ensure that the JSON payload received from an API
- * client is complete and internally consistent before the service processes it.
- * The custom {@link #isUnitValidForMeasurementType()} method provides cross-field
- * validation to confirm that the {@code unit} value is a valid constant for the
- * declared {@code measurementType}.</p>
- *
- * <p>Lombok {@code @Data} generates getters, setters, {@code toString}, {@code equals},
- * and {@code hashCode}. {@code @NoArgsConstructor} provides the no-arg constructor
- * required by Jackson for JSON deserialisation.</p>
- *
- * @author Abhishek Puri Goswami
- * @version 17.0
- * @since 1.0
- */
+
 @Data
 @NoArgsConstructor
 public class QuantityDTO {

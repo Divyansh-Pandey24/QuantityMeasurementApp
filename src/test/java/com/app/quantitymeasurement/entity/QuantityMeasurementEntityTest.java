@@ -11,21 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * QuantityMeasurementEntityTest
- *
- * Tests the QuantityMeasurementEntity JPA entity:
- * - String-result constructor (COMPARE / CONVERT operations)
- * - Model-result constructor (ADD / SUBTRACT / DIVIDE operations)
- * - Error constructor (failed operations)
- * - toString() format for success and error cases
- * - Null operand guard in base constructor
- * - Serializable contract
- *
- *
- * @author Abhishek Puri Goswami
- * @version 17.0
- */
+
 public class QuantityMeasurementEntityTest {
 
     private QuantityModel<IMeasurable> q1;      // 2.0 FEET

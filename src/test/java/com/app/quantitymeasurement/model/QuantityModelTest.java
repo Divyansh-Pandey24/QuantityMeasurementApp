@@ -10,19 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * QuantityModelTest
- *
- * Tests the QuantityModel POJO used by the service layer:
- * - Constructor stores value and unit correctly
- * - Constructor rejects null unit and non-finite values
- * - getValue() and getUnit() return the stored fields
- * - toString() produces a readable representation
- * - Works correctly across all measurement categories
- * 
- * @author Abhishek Puri Goswami
- * @version 17.0
- */
+
 public class QuantityModelTest {
 
     private static final double EPSILON = 1e-6;

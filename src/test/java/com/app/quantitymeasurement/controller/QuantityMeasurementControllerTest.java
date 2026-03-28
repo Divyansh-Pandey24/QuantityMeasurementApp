@@ -34,17 +34,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-/**
- * QuantityMeasurementControllerTest
- * Full 23-test suite ported from UC16 to UC17 @WebMvcTest style.
- * All UC16 scenarios preserved: layer separation, comparison, conversion,
- * addition (2+3 args), subtraction, division, all-ops pass, data flow,
- * backward compatibility, validation, GET endpoints, Mockito.verify.
- * 
- * @author Abhishek Puri Goswami
- * UC18: All tests run as @WithMockUser since endpoints now require authentication.
- * @version 18.0
- */
+
 @WebMvcTest(QuantityMeasurementController.class)
 @Import(SecurityConfig.class)
 @AutoConfigureMockMvc(addFilters = false)

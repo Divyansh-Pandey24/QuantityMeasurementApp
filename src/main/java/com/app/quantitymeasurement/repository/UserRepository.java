@@ -8,33 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-/**
- * UserRepository
- *
- * Spring Data JPA repository for the {@link User} entity. Provides standard CRUD
- * operations inherited from {@link JpaRepository}, plus application-specific
- * finder methods used by the authentication and user-management flows.
- *
- * <p><b>Finder methods and their use cases:</b></p>
- * <ul>
- *   <li>{@link #findByEmail(String)}               — used by
- *       {@code CustomUserDetailsService} to load a principal for local login,
- *       and by the JWT filter to resolve the subject claim back to a full User.</li>
- *   <li>{@link #existsByEmail(String)}              — used during registration to
- *       reject duplicate email addresses before attempting an INSERT.</li>
- *   <li>{@link #findByProviderAndProviderId}        — used by
- *       {@code CustomOAuth2UserService} to look up an existing account when the
- *       same OAuth2 user (Google or GitHub) signs in again, without relying on
- *       an email address that the user may have changed on the provider's side.</li>
- * </ul>
- *
- * <p>All method names follow Spring Data's query-derivation naming convention,
- * so no explicit JPQL / SQL is required.</p>
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 

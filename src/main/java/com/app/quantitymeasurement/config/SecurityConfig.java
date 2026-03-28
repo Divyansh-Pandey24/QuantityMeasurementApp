@@ -26,42 +26,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-/**
- * SecurityConfig
- *
- * Central Spring Security configuration for UC-18: Google Authentication and
- * User Management for Quantity Measurement.
- *
- * <p><b>Authentication mechanisms:</b></p>
- * <ol>
- *   <li><b>Local JWT auth</b> — POST email+password to /api/v1/auth/login;
- *       server returns a signed JWT; client sends Authorization: Bearer token.</li>
- *   <li><b>Google OAuth2</b> — redirect to /oauth2/authorization/google;
- *       after consent, CustomOAuth2UserService resolves the Google profile to a
- *       local User, and OAuth2AuthenticationSuccessHandler issues a JWT.</li>
- * </ol>
- *
- * <p><b>Endpoint access matrix:</b></p>
- * <pre>
- * PUBLIC  : /api/v1/auth/**, /oauth2/**, /login/oauth2/**
- *           /swagger-ui/**, /v3/api-docs/**
- *           /h2-console/**, /actuator/health, /actuator/info
- * USER+ADMIN : POST /api/v1/quantities/{compare,convert,add,subtract,divide}
- *              GET  /api/v1/quantities/history/operation/{op}
- *              GET  /api/v1/quantities/history/type/{type}
- *              GET  /api/v1/quantities/count/{op}
- * ADMIN only : GET  /api/v1/quantities/history/errored
- * </pre>
- *
- * <p><b>Session policy:</b> STATELESS — no HTTP session is ever created.
- * All state lives in the JWT.</p>
- *
- * <p><b>CSRF:</b> disabled — stateless JWT APIs are not vulnerable to CSRF.</p>
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)

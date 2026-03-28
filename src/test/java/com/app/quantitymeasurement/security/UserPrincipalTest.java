@@ -12,19 +12,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * UserPrincipalTest
- *
- * Unit tests for {@link UserPrincipal} — the unified Security principal that
- * implements both {@link org.springframework.security.core.userdetails.UserDetails}
- * and {@link org.springframework.security.oauth2.core.user.OAuth2User}.
- *
- * <p>Covers the LOCAL, GOOGLE, and GITHUB authentication paths.</p>
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
+
 public class UserPrincipalTest {
 
     private User localUser;

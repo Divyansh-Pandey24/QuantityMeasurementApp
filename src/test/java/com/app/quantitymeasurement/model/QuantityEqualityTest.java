@@ -10,16 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * QuantityEqualityTest
- *
- * Tests equality and hashCode contract for Quantity across all unit categories.
- * Covers: same-unit, cross-unit, cross-category, edge values,
- * null/NaN/Infinity guards, reflexive, symmetric, and transitive properties.
- * 
- * @author Abhishek Puri Goswami
- * @version 17.0
- */
+
 public class QuantityEqualityTest {
 
     private static final double EPSILON = 1e-6;

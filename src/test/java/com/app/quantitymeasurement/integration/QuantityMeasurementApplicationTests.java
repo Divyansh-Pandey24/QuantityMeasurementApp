@@ -32,31 +32,6 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * QuantityMeasurementApplicationTests
- *
- * Full integration tests for the Quantity Measurement Spring Boot application.
- *
- * Uses @SpringBootTest to start the complete application context on a random port,
- * and TestRestTemplate to perform actual HTTP requests against the running server.
- * The H2 in-memory database is used for isolation — each test run starts clean.
- *
- * These tests verify the entire application stack:
- * - REST controller receives and validates requests
- * - Service layer performs business logic
- * - Repository persists results via Spring Data JPA
- * - Responses are serialized to JSON correctly
- * - Exception handling returns structured error responses
- * - Swagger UI is accessible
- * - H2 Console is accessible
- * - Actuator health endpoint returns UP
- *
- * Test class name matches the Spring Initializr convention for integration tests.
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 17.0
- */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 public class QuantityMeasurementApplicationTests {

@@ -29,35 +29,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 
-/**
- * AuthController
- *
- * REST controller exposing local authentication endpoints:
- * <ul>
- *   <li>{@code POST /api/v1/auth/register} — create a new LOCAL account and
- *       return a JWT immediately (no separate login step required).</li>
- *   <li>{@code POST /api/v1/auth/login}    — authenticate an existing LOCAL
- *       account and return a JWT.</li>
- *   <li>{@code GET  /api/v1/auth/me}       — return profile information for
- *       the currently authenticated user (works for both LOCAL and Google accounts).</li>
- * </ul>
- *
- * <p><b>Google OAuth2</b> authentication is <em>not</em> handled here; it is
- * managed entirely by Spring Security's built-in OAuth2 login filter chain.
- * The flow starts at {@code /oauth2/authorization/google} and ends with
- * {@code OAuth2AuthenticationSuccessHandler} redirecting the browser to the
- * frontend URL with a JWT in the query string.</p>
- *
- * <p><b>Security:</b> all three endpoints are public (no authentication
- * required) as declared in {@code SecurityConfig}. The {@code /me} endpoint
- * is authenticated via the JWT filter before the controller method is reached.</p>
- *
- * <p><b>Base URL:</b> {@code /api/v1/auth}</p>
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
+
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/auth")

@@ -5,20 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * TemperatureUnitTest
- *
- * Tests the TemperatureUnit enum's non-linear conversions, base-unit logic,
- * arithmetic support guard, unit name, and measurement type.
- *
- * Note: TemperatureUnit does NOT implement SupportsArithmetic.
- * Arithmetic operations on Quantity<TemperatureUnit> are therefore rejected.
- *
- * Base unit for temperature is CELSIUS.
- * 
- * @author Abhishek Puri Goswami
- * @version 17.0
- */
+
 public class TemperatureUnitTest {
 
     private static final double EPSILON = 1e-6;

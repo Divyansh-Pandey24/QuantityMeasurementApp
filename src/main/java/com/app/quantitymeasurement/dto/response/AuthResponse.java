@@ -5,39 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * AuthResponse
- *
- * Data Transfer Object returned to the client after a successful authentication
- * event — either a local email/password login or a Google OAuth2 sign-in.
- *
- * <p>The JWT {@code accessToken} contained in this response must be included by
- * the client in the {@code Authorization} header of all subsequent requests to
- * protected endpoints, using the {@code Bearer} scheme:</p>
- *
- * <pre>
- * Authorization: Bearer &lt;accessToken&gt;
- * </pre>
- *
- * <p><b>Example JSON response:</b></p>
- * <pre>
- * {
- *   "accessToken":  "eyJhbGciOiJIUzI1NiJ9...",
- *   "tokenType":    "Bearer",
- *   "email":        "user@example.com",
- *   "name":         "Jane Doe",
- *   "role":         "USER"
- * }
- * </pre>
- *
- * <p><b>Token lifetime:</b> configured via {@code app.jwt.expiration-ms} in
- * {@code application.properties}. After expiry, the client must re-authenticate
- * to obtain a new token (refresh tokens are outside the scope of UC-18).</p>
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
+
 @Data
 @Builder
 @NoArgsConstructor

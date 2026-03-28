@@ -21,64 +21,7 @@ import com.app.quantitymeasurement.security.UserPrincipal;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * CustomOAuth2UserService
- *
- * Extends Spring Security's {@link DefaultOAuth2UserService} to add
- * application-specific logic after an OAuth2 provider (Google or GitHub)
- * returns the authenticated user's profile attributes.
- *
- * <p>
- * <b>Supported providers:</b>
- * </p>
- * <ul>
- * <li>{@link AuthProvider#GOOGLE} — initiated at
- * {@code /oauth2/authorization/google}. The attribute map contains
- * {@code email}, {@code name}, {@code picture}, and {@code sub} (stable subject
- * ID).</li>
- * <li>{@link AuthProvider#GITHUB} — initiated at
- * {@code /oauth2/authorization/github}. The attribute map contains {@code id}
- * (numeric, used as {@code providerId}), {@code login} (username), {@code name}
- * (display name, may be null), {@code avatar_url}, and {@code email} (may be
- * null if the user's GitHub email is private — the {@code user:email} scope is
- * requested to maximise the chance of receiving it).</li>
- * </ul>
- *
- * <p>
- * <b>Authorization code flow (same for both providers):</b>
- * </p>
- * <ol>
- * <li>User clicks "Sign in with Google/GitHub".</li>
- * <li>Browser redirects to {@code /oauth2/authorization/{provider}}.</li>
- * <li>Spring Security redirects to the provider's authorization endpoint.</li>
- * <li>User approves; provider redirects to
- * {@code /login/oauth2/code/{provider}} with an authorization code.</li>
- * <li>Spring Security exchanges the code for an access token
- * (server-to-server).</li>
- * <li>Spring Security calls {@link #loadUser(OAuth2UserRequest)} (this service)
- * so we can fetch the profile and persist/update the local {@link User}.</li>
- * <li>{@code OAuth2AuthenticationSuccessHandler} then issues a JWT and
- * redirects the client to the configured frontend URL.</li>
- * </ol>
- *
- * <p>
- * <b>First-time vs. returning user logic:</b>
- * </p>
- * <ul>
- * <li><b>First login</b> — no existing record found; a new {@link User} is
- * created with the resolved provider, role {@link Role#USER}, and the profile
- * data from the provider.</li>
- * <li><b>Returning login</b> — existing record found by email; mutable profile
- * fields (name, image URL) are refreshed.</li>
- * <li><b>Conflict</b> — existing record found but registered via a different
- * provider; an {@link OAuth2AuthenticationException} is thrown so the user sees
- * a meaningful error instead of a silent merge.</li>
- * </ul>
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
+
 @Slf4j
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {

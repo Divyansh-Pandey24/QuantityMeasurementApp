@@ -4,18 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * IMeasurableTest
- *
- * Verifies the IMeasurable interface contract across all unit implementations:
- * - getUnitName() and getMeasurementType() are correctly implemented
- * - convertToBaseUnit(1.0) matches the expected conversion factor
- * - convertToBaseUnit / convertFromBaseUnit are inverses
- * - SupportsArithmetic is implemented by Length, Weight, Volume but NOT Temperature
- *
- * @author Abhishek Puri Goswami
- * @version 17.0
- */
+
 public class IMeasurableTest {
 
     private static final double EPSILON = 1e-6;

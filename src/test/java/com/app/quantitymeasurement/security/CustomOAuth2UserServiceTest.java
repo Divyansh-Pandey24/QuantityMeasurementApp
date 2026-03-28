@@ -30,27 +30,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-/**
- * CustomOAuth2UserServiceTest
- *
- * Unit tests for {@link CustomOAuth2UserService} covering both the Google and
- * GitHub OAuth2 provider paths.
- *
- * <p><b>Testing strategy:</b> {@code CustomOAuth2UserService} extends
- * {@link org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService},
- * whose {@code loadUser()} makes an HTTP call to the provider's UserInfo endpoint.
- * That HTTP call cannot run in a unit test without a live server. Instead, each test
- * constructs a {@link TestableOAuth2UserService} that overrides {@code loadUser()} to
- * return a synthetic {@link OAuth2User} built from a hard-coded attribute map, then
- * delegates to {@code super.loadUser()} only in name — the overriding method calls
- * the internal {@code processOAuth2User()} directly via the protected helper exposed
- * by {@link TestableOAuth2UserService}. The {@link UserRepository} is mocked so no
- * database is required.</p>
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
+
 @ExtendWith(MockitoExtension.class)
 public class CustomOAuth2UserServiceTest {
 

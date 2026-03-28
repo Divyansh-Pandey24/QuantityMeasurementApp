@@ -7,41 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * RegisterRequest
- *
- * Data Transfer Object for the local user registration request body.
- *
- * <p>Clients POST this payload to {@code /api/v1/auth/register} to create a new
- * local account. On success, the endpoint returns an {@link AuthResponse} with
- * an immediately usable JWT — the user does not need to log in separately after
- * registering.</p>
- *
- * <p>Validation rules:</p>
- * <ul>
- *   <li>{@code email}    — must be a syntactically valid, non-blank email address.</li>
- *   <li>{@code password} — must be between 8 and 100 characters. BCrypt imposes a
- *       practical limit of 72 bytes on the raw input, so 100 characters is a safe
- *       upper bound for ASCII-heavy passwords.</li>
- *   <li>{@code name}     — optional display name; max 100 characters.</li>
- * </ul>
- *
- * <p>Constraint violations are caught by {@code GlobalExceptionHandler} and returned
- * as a {@code 400 Bad Request} response with a descriptive message.</p>
- *
- * <p><b>Example JSON payload:</b></p>
- * <pre>
- * {
- *   "email":    "newuser@example.com",
- *   "password": "strongP@ssw0rd",
- *   "name":     "Jane Doe"
- * }
- * </pre>
- *
- * @author Abhishek Puri Goswami
- * @version 18.0
- * @since 18.0
- */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

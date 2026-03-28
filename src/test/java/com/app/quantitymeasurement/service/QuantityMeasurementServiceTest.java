@@ -21,18 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-/**
- * QuantityMeasurementServiceTest
- *
- * Unit tests for QuantityMeasurementServiceImpl using Mockito.
- *
- * @ExtendWith(MockitoExtension.class) initializes mocks without starting Spring context.
- * QuantityMeasurementRepository is mocked so tests are isolated from the database.
- *
- * @author Abhishek Puri Goswami
- * @version 17.0
- * @since 1.0
- */
+
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 public class QuantityMeasurementServiceTest {

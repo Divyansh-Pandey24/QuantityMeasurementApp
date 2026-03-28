@@ -9,36 +9,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * QuantityMeasurementDTO
- *
- * API response DTO that represents the outcome of a single quantity measurement
- * operation. It mirrors the fields of {@link QuantityMeasurementEntity} but is
- * designed for API communication rather than database persistence.
- *
- * <p>Fields are organised into three groups:</p>
- * <ul>
- *   <li><b>Operands</b> — first ({@code this*}) and second ({@code that*}) quantity
- *       values, units, and measurement types.</li>
- *   <li><b>Result</b> — {@code resultString} for comparison operations ("true"/"false"),
- *       or {@code resultValue}/{@code resultUnit}/{@code resultMeasurementType} for
- *       arithmetic and conversion operations.</li>
- *   <li><b>Error</b> — {@code error} flag and {@code errorMessage} when the
- *       operation failed.</li>
- * </ul>
- *
- * <p>Static factory methods handle conversion between entity and DTO:</p>
- * <ul>
- *   <li>{@link #fromEntity(QuantityMeasurementEntity)} — single entity → DTO.</li>
- *   <li>{@link #toEntity()} — this DTO → entity (for persistence).</li>
- *   <li>{@link #fromEntityList(List)} — list of entities → list of DTOs.</li>
- *   <li>{@link #toEntityList(List)} — list of DTOs → list of entities.</li>
- * </ul>
- *
- * @author Abhishek Puri Goswami
- * @version 17.0
- * @since 17.0
- */
+
 @Data
 @Builder
 @NoArgsConstructor

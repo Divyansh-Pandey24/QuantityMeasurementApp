@@ -4,18 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * VolumeUnitTest
- *
- * Tests the VolumeUnit enum's conversion factors, base unit conversions,
- * unit name, measurement type, and arithmetic support.
- *
- * Base unit for volume is LITRE.
- * Conversion factor for each unit equals convertToBaseUnit(1.0).
- * 
- * @author Abhishek Puri Goswami
- * @version 17.0
- */
+
 public class VolumeUnitTest {
 
     private static final double EPSILON = 1e-6;
