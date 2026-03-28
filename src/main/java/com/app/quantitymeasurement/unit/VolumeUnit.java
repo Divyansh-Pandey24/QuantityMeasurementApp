@@ -1,6 +1,27 @@
 package com.app.quantitymeasurement.unit;
 
-
+/**
+ * VolumeUnit
+ *
+ * Enumeration of supported volume measurement units.
+ *
+ * Implements {@link IMeasurable} and {@link SupportsArithmetic}, enabling full
+ * arithmetic support (addition, subtraction, division) in the service layer.
+ *
+ * <p><b>Base unit:</b> LITRE. Results are rounded to 6 decimal places.</p>
+ *
+ * <table border="1">
+ *   <caption>Conversion factors to LITRE</caption>
+ *   <tr><th>Unit</th><th>Factor</th></tr>
+ *   <tr><td>LITRE</td><td>1.0</td></tr>
+ *   <tr><td>MILLILITRE</td><td>0.001</td></tr>
+ *   <tr><td>GALLON</td><td>3.785412</td></tr>
+ * </table>
+ *
+ * @author Abhishek Puri Goswami
+ * @version 17.0
+ * @since 1.0
+ */
 public enum VolumeUnit implements IMeasurable, SupportsArithmetic {
 
     LITRE(1.0),
@@ -14,13 +35,25 @@ public enum VolumeUnit implements IMeasurable, SupportsArithmetic {
         this.conversionFactor = conversionFactor;
     }
 
- 
+    /**
+     * Converts {@code value} from this unit to LITRE.
+     * Result is rounded to 6 decimal places.
+     *
+     * @param value value in this unit
+     * @return equivalent value in LITRE
+     */
     @Override
     public double convertToBaseUnit(double value) {
         return Math.round(value * conversionFactor * 1_000_000.0) / 1_000_000.0;
     }
 
-
+    /**
+     * Converts {@code baseValue} from LITRE to this unit.
+     * Result is rounded to 6 decimal places.
+     *
+     * @param baseValue value in LITRE
+     * @return equivalent value in this unit
+     */
     @Override
     public double convertFromBaseUnit(double baseValue) {
         return Math.round(baseValue / conversionFactor * 1_000_000.0) / 1_000_000.0;
@@ -34,7 +67,14 @@ public enum VolumeUnit implements IMeasurable, SupportsArithmetic {
     @Override
     public String getMeasurementType() { return this.getClass().getSimpleName(); }
 
- 
+    /**
+     * Returns the {@code VolumeUnit} constant whose name matches {@code unitName}
+     * (case-insensitive).
+     *
+     * @param unitName name of the unit to look up
+     * @return matching constant
+     * @throws IllegalArgumentException if no match is found
+     */
     @Override
     public IMeasurable getUnitInstance(String unitName) {
         for (VolumeUnit unit : VolumeUnit.values()) {

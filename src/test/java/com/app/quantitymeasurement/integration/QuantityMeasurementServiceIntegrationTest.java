@@ -1,10 +1,14 @@
-package com.app.quantitymeasurement.service;
+package com.app.quantitymeasurement.integration;
 
-import com.app.quantitymeasurement.exception.QuantityMeasurementException;
-import com.app.quantitymeasurement.dto.QuantityDTO;
-import com.app.quantitymeasurement.dto.QuantityMeasurementDTO;
-import com.app.quantitymeasurement.entity.QuantityMeasurementEntity;
-import com.app.quantitymeasurement.repository.QuantityMeasurementRepository;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,14 +16,37 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.quality.Strictness;
 import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import com.app.quantitymeasurement.dto.request.QuantityMeasurementDTO;
+import com.app.quantitymeasurement.dto.response.QuantityDTO;
+import com.app.quantitymeasurement.entity.QuantityMeasurementEntity;
+import com.app.quantitymeasurement.exception.QuantityMeasurementException;
+import com.app.quantitymeasurement.repository.QuantityMeasurementRepository;
+import com.app.quantitymeasurement.service.QuantityMeasurementServiceImpl;
 
-
+/**
+ * QuantityMeasurementServiceIntegrationTest
+ *
+ * Ports all 55 UC16 service test scenarios to the UC17 Spring service.
+ * Tests call the service directly (compare, convert, add, subtract, divide)
+ * and assert on the returned QuantityMeasurementDTO instead of raw values.
+ *
+ * All UC16 spec items preserved:
+ * - Comparison across all categories (length, weight, volume, temperature)
+ * - Conversion across all categories
+ * - Addition (2-arg and 3-arg with target unit)
+ * - Subtraction (2-arg and 3-arg)
+ * - Division
+ * - Exception handling: temperature arithmetic, cross-category, divide-by-zero
+ * - End-to-end integration flows (all ops in sequence)
+ * - Repository tracking: every operation is saved
+ * - Scalability: existing ops produce same results after full suite run
+ *
+ * @author Abhishek Puri Goswami
+ * @version 17.0
+ */
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 public class QuantityMeasurementServiceIntegrationTest {

@@ -4,7 +4,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+/**
+ * LengthUnitTest
+ *
+ * Tests the LengthUnit enum's conversion factors, base unit conversions,
+ * unit name, measurement type, arithmetic support, and enum identity.
+ *
+ * Base unit for length is INCHES.
+ * Conversion factor for each unit equals convertToBaseUnit(1.0).
+ *
+ * @author Abhishek Puri Goswami
+ * @version 17.0
+ */
 public class LengthUnitTest {
 
     private static final double EPSILON = 1e-6;

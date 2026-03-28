@@ -13,7 +13,27 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+/**
+ * QuantityMeasurementRepositoryTest
+ *
+ * Integration tests for the Spring Data JPA QuantityMeasurementRepository.
+ *
+ * @DataJpaTest configures a minimal Spring context with JPA/H2 only (no web layer).
+ * Each test runs in a transaction that is rolled back after the test, ensuring isolation.
+ *
+ * Tests verify:
+ * - findByOperation() returns correct records
+ * - findByThisMeasurementType() filters correctly
+ * - findByCreatedAtAfter() returns recent records
+ * - findSuccessfulByOperation() (custom @Query) filters by isError=false
+ * - countByOperationAndErrorFalse() counts correctly
+ * - findByErrorTrue() returns only error records
+ * - Standard JPA save and findAll work correctly
+ *
+ * @author Abhishek Puri Goswami
+ * @version 17.0
+ * @since 17.0
+ */
 @DataJpaTest
 @ActiveProfiles("test")
 public class QuantityMeasurementRepositoryTest {

@@ -1,12 +1,24 @@
 package com.app.quantitymeasurement.dto;
 
-import com.app.quantitymeasurement.dto.QuantityDTO;
+import com.app.quantitymeasurement.dto.response.QuantityDTO;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
-
+/**
+ * QuantityDTOTest
+ *
+ * Tests the QuantityDTO data transfer object:
+ * - Enum-based constructor populates value, unit, and measurementType correctly
+ * - String-based constructor stores raw values as-is
+ * - Getters return the stored values
+ * - toString produces the expected format
+ * - Inner unit enums expose correct names and measurement types
+ * - IMeasurableUnit contract is satisfied by all inner enums
+ * 
+ * @author Abhishek Puri Goswami
+ * @version 17.0
+ */
 public class QuantityDTOTest {
 
     // =========================================================================

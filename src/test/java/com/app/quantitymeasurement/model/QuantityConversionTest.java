@@ -9,7 +9,17 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+/**
+ * QuantityConversionTest
+ *
+ * Tests the Quantity.convertTo() method across all unit categories.
+ * Covers: directional conversions, round-trips, same-unit, zero/negative
+ * values, null guard, and NaN/Infinity construction guard.
+ *  
+ *  *
+ * @author Abhishek Puri Goswami
+ * @version 17.0
+ */
 public class QuantityConversionTest {
 
     private static final double EPSILON = 1e-6;

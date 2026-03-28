@@ -4,7 +4,19 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+/**
+ * QuantityMeasurementExceptionTest
+ *
+ * Tests the custom exception class:
+ * - Extends RuntimeException (unchecked)
+ * - Message-only constructor stores the message
+ * - Message + cause constructor stores both
+ * - Can be thrown and caught normally
+ * - Cause is accessible via getCause()
+ *
+ * @author Abhishek Puri Goswami
+ * @version 17.0
+ */
 public class QuantityMeasurementExceptionTest {
 
     // =========================================================================
