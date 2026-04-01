@@ -28,7 +28,7 @@ public class UserPrincipal implements UserDetails, OAuth2User {
      * Raw OAuth2 attribute map returned by the Google UserInfo endpoint.
      * {@code null} for principals created via the local authentication path.
      */
-    private Map<String, Object> attributes;
+    private transient Map<String, Object> attributes;
 
     /*
      * -------------------------------------------------------------------------

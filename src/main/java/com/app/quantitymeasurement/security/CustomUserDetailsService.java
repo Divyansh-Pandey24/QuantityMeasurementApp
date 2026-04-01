@@ -1,23 +1,26 @@
 package com.app.quantitymeasurement.security;
 
-import com.app.quantitymeasurement.entity.User;
-import com.app.quantitymeasurement.repository.UserRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.app.quantitymeasurement.entity.User;
+import com.app.quantitymeasurement.repository.UserRepository;
+import com.app.quantitymeasurement.security.jwt.JwtAuthenticationFilter;
+
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    /**
+    public CustomUserDetailsService(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+	/**
      * Loads a user by their email address.
      *
      * <p>Spring Security calls this method with the value that was passed as the

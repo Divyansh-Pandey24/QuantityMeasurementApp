@@ -26,8 +26,11 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
-	@Autowired
 	private UserRepository userRepository;
+	
+	public CustomOAuth2UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
 	/**
 	 * Called by Spring Security after it has exchanged the OAuth2 authorization

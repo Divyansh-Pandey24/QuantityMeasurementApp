@@ -21,9 +21,13 @@ import com.app.quantitymeasurement.unit.IMeasurable;
 @Service
 public class QuantityMeasurementServiceImpl implements IQuantityMeasurementService {
 
+    private static final double EPSILON = 1e-6;
 
-    @Autowired
-    private QuantityMeasurementRepository repository;
+    private final QuantityMeasurementRepository repository;
+
+    public QuantityMeasurementServiceImpl(QuantityMeasurementRepository repository) {
+        this.repository = repository;
+    }
 
     // -------------------------------------------------------------------------
     // Internal enums
@@ -295,17 +299,17 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 
     /**
      * Compares two quantity models by their base-unit values using
-     * {@link Double#compare} (exact equality, no tolerance).
+     * an epsilon tolerance of {@code 1e-6} to account for floating-point rounding.
      *
      * @param q1 first model
      * @param q2 second model
-     * @return {@code true} if the base values are exactly equal
+     * @return {@code true} if the base values are equal within tolerance
      */
     private <U extends IMeasurable> boolean compareBaseValues(
             QuantityModel<U> q1, QuantityModel<U> q2) {
-        return Double.compare(
-            q1.getUnit().convertToBaseUnit(q1.getValue()),
-            q2.getUnit().convertToBaseUnit(q2.getValue())) == 0;
+        double base1 = q1.getUnit().convertToBaseUnit(q1.getValue());
+        double base2 = q2.getUnit().convertToBaseUnit(q2.getValue());
+        return Math.abs(base1 - base2) < EPSILON;
     }
 
     /**

@@ -24,7 +24,7 @@ public class OAuth2AuthenticationFailureHandler extends SimpleUrlAuthenticationF
      * Frontend URL to redirect to on failure. The {@code ?error=} query parameter
      * is appended dynamically. Defaults to Swagger UI for local development.
      */
-    @Value("${app.oauth2.redirect-uri:http://localhost:8080/swagger-ui.html}")
+    @Value("${app.oauth2.redirect-uri:http://localhost:3000/oauth2/callback}")
     private String redirectUri;
 
     /**

@@ -2,7 +2,6 @@ package com.app.quantitymeasurement.security.jwt;
 
 import java.io.IOException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,13 +30,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
      * -------------------------------------------------------------------------
      */
 
-    @Autowired
-    private JwtTokenProvider jwtTokenProvider;
+    private final JwtTokenProvider jwtTokenProvider;
+    private final CustomUserDetailsService customUserDetailsService;
+    
+    public JwtAuthenticationFilter(JwtTokenProvider jwtTokenProvider,
+			CustomUserDetailsService customUserDetailsService) {
+		this.jwtTokenProvider = jwtTokenProvider;
+		this.customUserDetailsService = customUserDetailsService;
+	}
 
-    @Autowired
-    private CustomUserDetailsService customUserDetailsService;
-
-    /*
+	/*
      * -------------------------------------------------------------------------
      * Core filter logic
      * -------------------------------------------------------------------------
