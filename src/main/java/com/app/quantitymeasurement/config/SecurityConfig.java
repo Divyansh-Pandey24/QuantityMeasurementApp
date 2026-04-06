@@ -222,13 +222,13 @@ public class SecurityConfig {
              *   - SuccessHandler           : issues JWT, redirects to frontend
              *   - FailureHandler           : redirects with ?error= on failure
              */
-            .oauth2Login(oauth2 -> oauth2
-                .userInfoEndpoint(userInfo ->
-                    userInfo.userService(customOAuth2UserService)
-                )
-                .successHandler(oAuth2AuthenticationSuccessHandler)
-                .failureHandler(oAuth2AuthenticationFailureHandler)
-            )
+//            .oauth2Login(oauth2 -> oauth2
+//                .userInfoEndpoint(userInfo ->
+//                    userInfo.userService(customOAuth2UserService)
+//                )
+//                .successHandler(oAuth2AuthenticationSuccessHandler)
+//                .failureHandler(oAuth2AuthenticationFailureHandler)
+//            )
 
             /* Register the DaoAuthenticationProvider for local logins */
             .authenticationProvider(authenticationProvider())
